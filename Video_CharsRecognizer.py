@@ -6,7 +6,7 @@ import operator
 import os.path
 
 
-def drawcontour_(image):
+def drawcontour_(image, predictor):
 
     videoimg = image
 
@@ -49,14 +49,15 @@ def drawcontour_(image):
                 crop_img = videoimg[y-2:y + h+2, x-2:x + w+2]
                 #imshow_(crop_img)
 
-                Cropped_Licenseplate(crop_img)
+                Cropped_Licenseplate(crop_img, predictor)
+
 
 
         else:
             pass
 
 
-def Cropped_Licenseplate(crop_img1):
+def Cropped_Licenseplate(crop_img1, predictor):
 
     imgfile = crop_img1
 
@@ -94,6 +95,16 @@ def Cropped_Licenseplate(crop_img1):
         if 1.2 > (aspectratio) > 0.01 and (extent) > 0.01:
             cv2.rectangle(imgfile, (x, y), (x + w, y + h), (0, 255, 0), 1)
             crop_img2 = imgfile[y - 2:y + h + 2, x - 2:x + w + 2]
+            from LetterRecognizer.recognizer_forContourRecognizer import letter_recognizer_with_opencvimage
+            crop_img2 = cv2.cvtColor(crop_img2, cv2.COLOR_BGR2GRAY)
+
+            if crop_img2 is not None:
+                result = letter_recognizer_with_opencvimage(crop_img2,predictor)[0]
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                cv2.putText(crop_img1, str(result), (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+
+
+
 
 
 
