@@ -4,6 +4,8 @@ from matplotlib import pyplot as plt
 from operator import itemgetter
 import operator
 import os.path
+from Video_PutText import PutText
+
 
 
 def drawcontour_(image):
@@ -12,7 +14,7 @@ def drawcontour_(image):
 
     gray = cv2.cvtColor(videoimg, cv2.COLOR_BGR2GRAY)
     # imshow_(gray)
-    blur = cv2.GaussianBlur(gray, (3, 3), 0)
+    gray = cv2.GaussianBlur(gray, (3, 3), 0)
     # imshow_(blur)
     ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     # imshow_(thresh)
@@ -52,8 +54,15 @@ def drawcontour_(image):
                 Cropped_Licenseplate(crop_img)
 
 
+                result=area
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                #cv2.putText(videoimg, result, (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+                cv2.putText(videoimg, str(result), (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+
+
         else:
             pass
+
 
 
 def Cropped_Licenseplate(crop_img1):
@@ -95,6 +104,9 @@ def Cropped_Licenseplate(crop_img1):
             cv2.rectangle(imgfile, (x, y), (x + w, y + h), (0, 255, 0), 1)
             crop_img2 = imgfile[y - 2:y + h + 2, x - 2:x + w + 2]
 
+            #path ='cropped/temp.png'
+            #cv2.imwrite(path,crop_img2)
+            #print(letter_recognizer(path))
 
 
         else:
