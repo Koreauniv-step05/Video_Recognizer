@@ -12,7 +12,7 @@ def drawcontour_(image, predictor):
 
     gray = cv2.cvtColor(videoimg, cv2.COLOR_BGR2GRAY)
     # imshow_(gray)
-    blur = cv2.GaussianBlur(gray, (3, 3), 0)
+    gray = cv2.GaussianBlur(gray, (3, 3), 0)
     # imshow_(blur)
     ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     # imshow_(thresh)
@@ -53,8 +53,15 @@ def drawcontour_(image, predictor):
 
 
 
+                result=area
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                #cv2.putText(videoimg, result, (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+                cv2.putText(videoimg, str(result), (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+
+
         else:
             pass
+
 
 
 def Cropped_Licenseplate(crop_img1, predictor):
