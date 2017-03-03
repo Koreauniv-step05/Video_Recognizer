@@ -17,7 +17,7 @@ while True:
     img2, contours, hierarchy = cv2.findContours(closed.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
     max_area_idxs = find_independant_idx(contours)
-
+    print(max_area_idxs)
 
     cv2.namedWindow('video', cv2.WINDOW_NORMAL)
     cv2.imshow('video', frame)

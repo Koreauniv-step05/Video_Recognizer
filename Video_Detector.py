@@ -1,7 +1,7 @@
 import cv2
 import sys
-from test import drawcontour_
-#from Video_CharsRecognizer import drawcontour_
+#from test import drawcontour_
+from Video_CharsRecognizer import drawcontour_
 import numpy as np
 
 
