@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from operator import itemgetter
 import operator
 import os.path
-from Video_PutText import PutText
+
 
 
 
@@ -58,7 +58,7 @@ def drawcontour_(image):
                 font = cv2.FONT_HERSHEY_SIMPLEX
                 #cv2.putText(videoimg, result, (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
                 cv2.putText(videoimg, str(result), (x, y + h + 20), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
-
+                cv2.waitKey(0)
 
         else:
             pass
