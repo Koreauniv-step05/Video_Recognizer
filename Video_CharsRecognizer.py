@@ -12,6 +12,7 @@ def drawcontour_(image, predictor):
 
     videoimg = image
 
+#    if videoimg.shape[2] is 3:
     gray = cv2.cvtColor(videoimg, cv2.COLOR_BGR2GRAY)
     # imshow_(gray)
     gray = cv2.GaussianBlur(gray, (3, 3), 0)
@@ -51,8 +52,9 @@ def drawcontour_(image, predictor):
                 crop_img = videoimg[y-2:y + h+2, x-2:x + w+2]
                 #imshow_(crop_img)
 
-                Cropped_Licenseplate(crop_img, predictor)
-                return True
+                result = Cropped_Licenseplate(crop_img, predictor)
+                if len(result) > 0:
+                    return True
 
 
                 #result=area
@@ -97,7 +99,7 @@ def Cropped_Licenseplate(crop_img1, predictor):
         if result is not None:
             results.append(result)
 
-    print(results)
+    return(results)
 
 def puttext_below_contour(crop_img1, imgfile, contour, predictor):
     x, y, w, h = cv2.boundingRect(contour)
