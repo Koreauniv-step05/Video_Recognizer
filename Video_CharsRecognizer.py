@@ -54,6 +54,7 @@ def drawcontour_(image, predictor):
 
                 result = Cropped_Licenseplate(crop_img, predictor)
                 if len(result) > 0:
+                    print(result)
                     return True
 
 

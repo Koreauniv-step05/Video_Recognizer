@@ -21,7 +21,7 @@ def load_allpath(path):
 from LetterRecognizer import recognizer_forContourRecognizer
 predictor = recognizer_forContourRecognizer.init()
 
-res = load_allpath("data")
+res = load_allpath("data/new")
 for filepath in res:
     img = cv2.imread(filepath)
     #img = cropsize(img)
